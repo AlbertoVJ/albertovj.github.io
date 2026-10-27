@@ -160,3 +160,13 @@ main{max-width:none;width:100%;min-height:100dvh;display:flex;flex-direction:col
 @media(min-width:800px) and (orientation:landscape){.grid{grid-auto-rows:max(132px,calc((100dvh - 180px)/3))}.grid[data-slots='24']{grid-auto-rows:max(120px,calc((100dvh - 200px)/4))}}
 
 #back{width:auto;white-space:nowrap;min-width:130px}@media(max-width:799px){#back{min-width:90px}}
+/* Círculo de encendido (Wake-on-LAN por la TV box), debajo de la botonera. */
+.power-row{display:flex;justify-content:center;padding:14px 0 4px}.power-row:has(.power[hidden]){display:none}
+.power{display:flex;flex-direction:column;align-items:center;gap:6px;background:none;border:0;color:var(--muted);font-size:13px;cursor:pointer;padding:0}
+.power-icon{display:grid;place-items:center;width:76px;height:76px;border-radius:50%;border:3px solid var(--accent);color:var(--accent);font-size:34px;line-height:1;background:#14121f;box-shadow:0 0 0 6px #b7a1ff14;transition:transform .12s,box-shadow .2s}
+.power:active .power-icon{transform:scale(.94)}
+.power.on .power-icon{border-color:#5fe3a1;color:#5fe3a1;box-shadow:0 0 0 6px #5fe3a11a}
+.power.waking .power-icon{animation:power-pulse 1.2s ease-in-out infinite}
+.power:disabled{cursor:default}
+@keyframes power-pulse{50%{box-shadow:0 0 0 14px #b7a1ff00;transform:scale(.97)}}
+@media(prefers-reduced-motion:reduce){.power.waking .power-icon{animation:none}}
